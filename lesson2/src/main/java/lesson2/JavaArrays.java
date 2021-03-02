@@ -7,7 +7,12 @@ public class JavaArrays {
 
         invertArrayFirstVar();
         System.out.println();
+
         invertArraySecondVar();
+        System.out.println();
+
+        fillArray();
+        System.out.println();
     }
 
     private static void invertArrayFirstVar(){
@@ -26,7 +31,6 @@ public class JavaArrays {
         }
         System.out.println(Arrays.toString(arr) + " - инвертированный массив");
     }
-
     private static void invertArraySecondVar(){
         System.out.println("Задача1. Второй вариант решения");
         int[] arr = {0, 1, 1, 0, 1, 0, 0};
@@ -36,5 +40,13 @@ public class JavaArrays {
             else arr[i] = 0;
         }
         System.out.println(Arrays.toString(arr) + " - инвертированный массив");
+    }
+    private static void fillArray(){
+        int[] arr = new int[8];
+        System.out.println("Задача2");
+        for (int i = 0; i < arr.length; i++){
+            arr[i] = 3 * i;
+        }
+        System.out.println(Arrays.toString(arr));
     }
 }
