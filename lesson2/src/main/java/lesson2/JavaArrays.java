@@ -13,6 +13,9 @@ public class JavaArrays {
 
         fillArray();
         System.out.println();
+
+        changeArray();
+        System.out.println();
     }
 
     private static void invertArrayFirstVar(){
@@ -48,5 +51,15 @@ public class JavaArrays {
             arr[i] = 3 * i;
         }
         System.out.println(Arrays.toString(arr));
+    }
+    private static void changeArray(){
+        System.out.println("Задача3");
+        int[] arr =  {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
+        System.out.println(Arrays.toString(arr) + " - исходный массив");
+        for (int i = 0; i < arr.length; i++){
+            if (arr[i] < 6) arr[i] = arr[i] * 2;
+        }
+        System.out.println(Arrays.toString(arr) + " - измененный массив");
+
     }
 }
