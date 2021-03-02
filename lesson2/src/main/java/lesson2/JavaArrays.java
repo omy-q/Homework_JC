@@ -16,6 +16,9 @@ public class JavaArrays {
 
         changeArray();
         System.out.println();
+
+        fillDiagonalArray();
+        System.out.println();
     }
 
     private static void invertArrayFirstVar(){
@@ -61,5 +64,17 @@ public class JavaArrays {
         }
         System.out.println(Arrays.toString(arr) + " - измененный массив");
 
+    }
+    private static void fillDiagonalArray(){
+        System.out.println("Задача4");
+        int[][] arr = new int[10][10];
+        for (int i = 0; i < arr.length; i++){
+            for (int j = 0; j < arr[i].length; j++){
+                if (j == i || j == arr[i].length - 1 - i){
+                    arr[i][j] = 1;
+                }
+            }
+            System.out.println(Arrays.toString(arr[i]));
+        }
     }
 }
