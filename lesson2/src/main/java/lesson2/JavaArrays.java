@@ -19,6 +19,9 @@ public class JavaArrays {
 
         fillDiagonalArray();
         System.out.println();
+
+        searchMinMaxEll();
+        System.out.println();
     }
 
     private static void invertArrayFirstVar(){
@@ -76,5 +79,17 @@ public class JavaArrays {
             }
             System.out.println(Arrays.toString(arr[i]));
         }
+    }
+    private static void searchMinMaxEll(){
+        System.out.println("Задача5");
+        int[] arr = {2, 5, 9, 3, 0, -6, -1, 15};
+        System.out.println(Arrays.toString(arr) + " - исходный массив");
+        int max = arr[0], min = arr[0];
+        for (int ell:arr) {
+            if (ell > max) max = ell;
+            if (ell < min) min = ell;
+        }
+        System.out.println("Минимальный элемент: " + min);
+        System.out.println("Максимальный элемент: " + max);
     }
 }
