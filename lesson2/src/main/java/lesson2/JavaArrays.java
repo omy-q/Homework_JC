@@ -26,6 +26,14 @@ public class JavaArrays {
         int[] arr = {2, 2, 2, 1, 2, 2, 10, 1};
         System.out.println("Сумма левой и правой частей массива равны? " + checkBalance(arr));
         System.out.println();
+
+        int[] arr1 = {1, 2, 3, 4, 5, 6};
+        shiftArrayFirstVar(arr1, -8);
+        System.out.println();
+
+//        int[] arr2 = {1, 2, 3, 4, 5, 6};
+        shiftArraySecondVar(arr1, -8);
+        System.out.println();
     }
 
     private static void invertArrayFirstVar(){
@@ -113,5 +121,34 @@ public class JavaArrays {
             }
         }
         return (sum1 == sum2);
+    }
+    private static void shiftArrayFirstVar(int[] arr, int n){
+        System.out.println("Задача7. Первый вариант решение с использованием нового массива");
+        System.out.println(Arrays.toString(arr) + " - исходный массив");
+        int[] new_arr = new int[arr.length];
+        if (n < 0) n = (n % arr.length) + arr.length;
+        for (int i = 0; i <arr.length; i++){
+            int j = i + n;
+            if (j > arr.length - 1) j %= arr.length;
+            new_arr[j] = arr[i];
+        }
+        System.out.println(Arrays.toString(new_arr) + " - полученный массив");
+    }
+    private static void shiftArraySecondVar(int[] arr, int n){
+        System.out.println("Задача7. Второй вариант решение без использования доп. массива");
+        System.out.println(Arrays.toString(arr) + " - исходный массив");
+        if (n < 0) n = (n % arr.length) + arr.length;
+        while(n > 0){
+            int buffer = arr[0], buffer2;
+            for (int i = 0; i < arr.length; i++){
+                int j = i + 1;
+                if (j > arr.length - 1) j = j - arr.length;
+                buffer2 = arr[j];
+                arr[j] = buffer;
+                buffer = buffer2;
+            }
+            n--;
+        }
+        System.out.println(Arrays.toString(arr) + " - полученный массив");
     }
 }
