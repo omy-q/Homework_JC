@@ -16,7 +16,7 @@ public class JavaApp {
         String stringVar = "HelloWorld!";
 
         // Вызов методов для пунктов 3-8
-       System.out.println("Результат работы метода для пункта 3: " + method3(10.2f, 5.3f, 12.05f, 3f));
+       System.out.println("Результат работы метода для пункта 3: " + method3(10, 15, 7, 4));
        System.out.println("Результат работы метода для пунтка 4: " + method4(17, -5));
        method5(-56);
        System.out.println("Результат работы метода для пунтка 6: " + method6(-9));
@@ -25,15 +25,11 @@ public class JavaApp {
 
 
     }
-    private static float method3(float a, float b, float c, float d) {
-        float result;
-        result = a * (b + (c / d));
-        return result;
+    private static double method3(int a, int b, int c, int d) {
+        return a * (b + (1.0 * c / d));
     }
     private static boolean method4(int a, int b) {
-        boolean result = false;
-        if ((a + b) >=10 && (a + b) <= 20) result = true;
-        return result;
+        return ((a + b) >=10 && (a + b) <= 20);
     }
     private static void method5(int a) {
         String result = "Число " + a + " положительное";
@@ -41,9 +37,7 @@ public class JavaApp {
         System.out.println("Результат работы метода для пунтка 5: " + result);
     }
     private static boolean method6(int a) {
-        boolean result = false;
-        if (a < 0) result = true;
-        return result;
+        return (a < 0);
     }
     private static  void method7(String name) {
         System.out.println("Результат работы метода для пунтка 7: Привет, " + name + "!");
