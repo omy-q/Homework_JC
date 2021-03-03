@@ -108,16 +108,14 @@ public class JavaArrays {
         System.out.println("Задача 6");
         System.out.println(Arrays.toString(arr) + " - исходный массив");
         int sum1 = 0, sum2 = 0;
-        for (int i = 0, j = arr.length - 1; ;) {
+        for (int i = 0, j = arr.length - 1; i <= j;) {
             if (sum1 > sum2){
                 sum2 += arr[j];
-                if (i == j) break;
-                else j--;
+                j--;
             }
             else {
                 sum1 += arr[i];
-                if (i == j) break;
-                else i++;
+                i++;
             }
         }
         return (sum1 == sum2);
