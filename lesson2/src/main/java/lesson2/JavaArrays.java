@@ -136,6 +136,7 @@ public class JavaArrays {
         System.out.println("Задача7. Второй вариант решение без использования доп. массива");
         System.out.println(Arrays.toString(arr) + " - исходный массив");
         if (n < 0) n = (n % arr.length) + arr.length;
+        if (n >= arr.length) n %= arr.length;
         while(n > 0){
             int buffer = arr[0], buffer2;
             for (int i = 0; i < arr.length; i++){
