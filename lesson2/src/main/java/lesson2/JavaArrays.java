@@ -22,6 +22,10 @@ public class JavaArrays {
 
         searchMinMaxEll();
         System.out.println();
+
+        int[] arr = {2, 2, 2, 1, 2, 2, 10, 1};
+        System.out.println("Сумма левой и правой частей массива равны? " + checkBalance(arr));
+        System.out.println();
     }
 
     private static void invertArrayFirstVar(){
@@ -91,5 +95,23 @@ public class JavaArrays {
         }
         System.out.println("Минимальный элемент: " + min);
         System.out.println("Максимальный элемент: " + max);
+    }
+    private static boolean checkBalance(int[] arr){
+        System.out.println("Задача 6");
+        System.out.println(Arrays.toString(arr) + " - исходный массив");
+        int sum1 = 0, sum2 = 0;
+        for (int i = 0, j = arr.length - 1; ;) {
+            if (sum1 > sum2){
+                sum2 += arr[j];
+                if (i == j) break;
+                else j--;
+            }
+            else {
+                sum1 += arr[i];
+                if (i == j) break;
+                else i++;
+            }
+        }
+        return (sum1 == sum2);
     }
 }
