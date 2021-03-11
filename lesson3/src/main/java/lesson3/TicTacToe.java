@@ -9,26 +9,31 @@ public class TicTacToe {
     private static final char dot_O = 'o';
     private static final char dot_EMPTY = '.';
 
-    private static final int size = 3;
+    private static int size;
     private static char[][] field;
 
     private static final Random rand = new Random();
     private static final Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args){
+
+        System.out.println("\n     Здравствуй, Игрок, попробуй свою удачу и логику");
+        System.out.println(" в игре 'Крестики-нолики' против искусственного интеллекта\n");
+        printRulls();
+        getFieldSize();
         initField();
         printField();
         do{
             humanTurn();
             if (checkWin(dot_X)){
                 printField();
-                System.out.println("Победа игрока");
+                System.out.println("Победа Игрока");
                 break;
             }
             aiTurn();
             if (checkWin(dot_O)){
                 printField();
-                System.out.println("Победа искусственного интелекта");
+                System.out.println("Победа искусственного интеллекта");
                 break;
             }
             printField();
@@ -66,14 +71,27 @@ public class TicTacToe {
         }
         System.out.println();
     }
+    private static void getFieldSize(){
+        System.out.println(" Введите размер поля (любое целое число, больше 3)");
+        size = sc.nextInt();
+        while(!isValidSize(size)){
+            System.out.println(" Вы ввели неверный размер поля, повторите ввод:\r");
+            size = sc.nextInt();
+        }
+    }
+
+    private static boolean isValidSize(int a){
+        return (a > 3);
+    }
+
 
     private static void humanTurn(){
         int x, y;
-        System.out.println("Введите координаты поля, куда будете ставить знак:\r");
+        System.out.println(" Введите координаты поля, куда будете ставить знак:\r");
         x = sc.nextInt() - 1;
         y = sc.nextInt() - 1;
         while(!isCellValid(x,y) || !isCellEmpty(x,y)){
-            System.out.println("Вы ввели неверные координаты, повторите ввод:\r");
+            System.out.println(" Вы ввели неверные координаты, повторите ввод:\r");
             x = sc.nextInt() - 1;
             y = sc.nextInt() - 1;
         }
@@ -139,14 +157,27 @@ public class TicTacToe {
                 count = 0;
             }
         }
-        if (isSomebodyWin(count)) {
-            return true;
-        }
-        return false;
+        return isSomebodyWin(count);
     }
 
     private static boolean isSomebodyWin(int count){
         return (count == size - 1);
+    }
+
+    private static void printRulls(){
+        String[] rulls = {"  Игрок и искусственный интеллект по очереди ставят на свобод-",
+                        "ные клетки поля, размер которого задает игрок, фигурки ( игрок",
+                        "ходит крестиками, искусственный интеллект - ноликами ).",
+                        "  Первый, выстроивший в ряд  по вертикали, горизонтали или диа-",
+                        "гонали свои фигуры в количестве, равном размерам поля, выигры-",
+                        "вает. ",
+                        "  Первый ход делает игрок, ставящий крестики."
+        };
+        System.out.println("-------------------------Правила игры-------------------------\n");
+        for (String string:rulls){
+            System.out.println(string);
+        }
+        System.out.println("--------------------------------------------------------------\n");
     }
 
 }
