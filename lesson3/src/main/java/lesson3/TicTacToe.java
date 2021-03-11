@@ -36,6 +36,11 @@ public class TicTacToe {
                 System.out.println("Победа искусственного интеллекта");
                 break;
             }
+            if (isDraw()){
+                printField();
+                System.out.println("Ничья");
+                break;
+            }
             printField();
         } while(true);
     }
@@ -158,6 +163,14 @@ public class TicTacToe {
             }
         }
         return isSomebodyWin(count);
+    }
+    private static boolean isDraw(){
+        for (char[] raw:field){
+            for (char symbol:raw){
+                if (symbol == dot_EMPTY) return false;
+            }
+        }
+        return true;
     }
 
     private static boolean isSomebodyWin(int count){
