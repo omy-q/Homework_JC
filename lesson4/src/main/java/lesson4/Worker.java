@@ -26,7 +26,12 @@ public class Worker {
     }
 
     public void getInfo(){
-        System.out.println("Surname %s name %s patronymic %s \nage %", surname, name, patronymic, age);
-        System.out.println("Position: %s \nEmail: %s \nTelephone: %ss \nSalary: %\n", position, email, telephone, salary);
+        System.out.printf("%s %s %s\n", surname, name, patronymic);
+        System.out.printf("Age: %d \n", age);
+        System.out.printf("Position: %s \n", position);
+        System.out.printf("Email: %s \n", email);
+        System.out.printf("Telephone: %ss \n", telephone);
+        System.out.printf("Salary: %d\n", salary);
+
     }
 }
