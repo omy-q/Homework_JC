@@ -5,9 +5,12 @@ import java.util.Scanner;
 
 public class TicTacToe {
 
-    private static final char dot_X = 'X';
-    private static final char dot_O = 'O';
+    private static char dot_Human;
+    private static char dot_Ai;
     private static final char dot_EMPTY = ' ';
+
+    private static int[] aiPoint = {0, 0};
+    private static int[] humanPoint;
 
     private static int goal;
     private static int size;
@@ -24,29 +27,61 @@ public class TicTacToe {
         do {
             getFieldSize();
             getGoal();
+            getHumanDot();
             initField();
             printField();
             playGames();
             System.out.println("Хотите сыграть еще раз? Если да, введите: 'y'");
             if (!sc.next().equalsIgnoreCase("y")) break;
         } while (true);
+    }
 
+    private static void getHumanDot(){
+        System.out.println("Выберите фигуру, какой будете ходить: X или O");
+        dot_Human = sc.next().charAt(0);
+        if (dot_Human == 'X') dot_Ai = 'O';
+        else dot_Ai = 'X';
     }
 
     private static void playGames() {
-        int[] point;
         do {
-            point = humanTurn(dot_X);
-            if (checkWin(point[0], point[1])) {
+            if (dot_Human == 'X') {
+                humanTurn(dot_Human);
+                if (checkWin(humanPoint[0], humanPoint[1])) {
+                    printField();
+                    System.out.println("Победа Игрока");
+                    break;
+                }
+                if (isDraw()) {
+                    printField();
+                    System.out.println("Ничья");
+                    break;
+                }
+                aiTurn(dot_Ai);
+                if (checkWin(aiPoint[0], aiPoint[1])) {
+                    printField();
+                    System.out.println("Победа искусственного интеллекта");
+                    break;
+                }
+            } else{
+                aiTurn(dot_Ai);
+                if (checkWin(aiPoint[0], aiPoint[1])) {
+                    printField();
+                    System.out.println("Победа искусственного интеллекта");
+                    break;
+                }
                 printField();
-                System.out.println("Победа Игрока");
-                break;
-            }
-            point = aiTurn(dot_O);
-            if (checkWin(point[0], point[1])) {
-                printField();
-                System.out.println("Победа искусственного интеллекта");
-                break;
+                if (isDraw()) {
+                    printField();
+                    System.out.println("Ничья");
+                    break;
+                }
+                humanTurn(dot_Human);
+                if (checkWin(humanPoint[0], humanPoint[1])) {
+                    printField();
+                    System.out.println("Победа Игрока");
+                    break;
+                }
             }
             if (isDraw()) {
                 printField();
@@ -74,7 +109,7 @@ public class TicTacToe {
     private static void getGoal() {
         System.out.println("Введите целое число, которое задает победное количество подряд стоящих фигур, не больше размера поля");
         goal = sc.nextInt();
-        while (!isValidSize(size) || goal > size) {
+        while (goal > size) {
             System.out.println("Вы ввели неверное число, повторите ввод:\r");
             goal = sc.nextInt();
         }
@@ -113,7 +148,7 @@ public class TicTacToe {
         System.out.println();
     }
 
-    private static int[] humanTurn(char dot) {
+    private static void humanTurn(char dot) {
         int x, y;
         System.out.println(" Введите координаты поля, куда будете ставить знак:\r");
         x = sc.nextInt() - 1;
@@ -123,19 +158,86 @@ public class TicTacToe {
             x = sc.nextInt() - 1;
             y = sc.nextInt() - 1;
         }
-        field[x][y] = dot;
-
-        return new int[]{x, y};
+        humanPoint = new int[]{x, y};
+        field[humanPoint[0]][humanPoint[1]] = dot;
     }
 
-    private static int[] aiTurn(char dot) {
+    private static void aiTurn(char dot) {
         int x, y;
-        do {
-            x = rand.nextInt(size);
-            y = rand.nextInt(size);
-        } while (!isCellValid(x, y) || !isCellEmpty(x, y));
-        field[x][y] = dot;
-        return new int[]{x, y};
+        if (humanPoint == null || (!isWinTurnHuman(dot_Human) && !isWinTurnAi(dot_Ai))){
+            do {
+                x = rand.nextInt(size);
+                y = rand.nextInt(size);
+            } while (!isCellValid(x, y) || !isCellEmpty(x, y));
+            aiPoint =  new int[]{x, y};
+        }
+        field[aiPoint[0]][aiPoint[1]] = dot;
+    }
+
+    private static boolean isWinPoint (int x, int y, char dot){
+        if (isCellValid(x, y) && isCellEmpty(x, y)){
+            field[x][y] = dot;
+            if (checkWin(x, y)){
+                field[x][y] = dot_EMPTY;
+                aiPoint[0] = x;
+                aiPoint[1] = y;
+            return true;
+            }
+            field[x][y] = dot_EMPTY;
+        }
+        return false;
+    }
+
+    private static boolean isWinTurnAi(char dot) {
+        int x = aiPoint[0] + 1, y = aiPoint[1];
+        if (isWinPoint(x, y, dot)) return true;
+
+        x = aiPoint[0] - 1; y = aiPoint[1];
+        if (isWinPoint(x, y, dot)) return true;
+
+        x = aiPoint[0]; y = aiPoint[1] + 1;
+        if (isWinPoint(x, y, dot)) return true;
+
+        x = aiPoint[0]; y = aiPoint[1] - 1;
+        if (isWinPoint(x, y, dot)) return true;
+
+        x = aiPoint[0] + 1; y = aiPoint[1] + 1;
+        if (isWinPoint(x, y, dot)) return true;
+
+        x = aiPoint[0] - 1; y = aiPoint[1] - 1;
+        if (isWinPoint(x, y, dot)) return true;
+
+        x = aiPoint[0] + 1; y = aiPoint[1] - 1;
+        if (isWinPoint(x, y, dot)) return true;
+
+        x = aiPoint[0] - 1; y = aiPoint[1] + 1;
+        return isWinPoint(x, y, dot);
+    }
+
+    private static boolean isWinTurnHuman(char dot) {
+        int x = humanPoint[0] + 1, y = humanPoint[1];
+        if (isWinPoint(x, y, dot)) return true;
+
+        x = humanPoint[0] - 1; y = humanPoint[1];
+        if (isWinPoint(x, y, dot)) return true;
+
+        x = humanPoint[0]; y = humanPoint[1] + 1;
+        if (isWinPoint(x, y, dot)) return true;
+
+        x = humanPoint[0]; y = humanPoint[1] - 1;
+        if (isWinPoint(x, y, dot)) return true;
+
+        x = humanPoint[0] + 1; y = humanPoint[1] + 1;
+        if (isWinPoint(x, y, dot)) return true;
+
+        x = humanPoint[0] - 1; y = humanPoint[1] - 1;
+        if (isWinPoint(x, y, dot)) return true;
+
+        x = humanPoint[0] + 1; y = humanPoint[1] - 1;
+        if (isWinPoint(x, y, dot)) return true;
+
+        x = humanPoint[0] - 1; y = humanPoint[1] + 1;
+        return isWinPoint(x, y, dot);
     }
 
     private static boolean isCellValid(int x, int y) {
@@ -197,11 +299,10 @@ public class TicTacToe {
                 count++;
             } else break;
         }
-        for (int xi = x + 1, yi = y - 1; xi < size && yi >= 0; xi++, yi--) {
+        for (int xi = x + 1, yi = y - 1; xi < size && yi >= 0; xi++, yi--)
             if (field[xi][yi] == field[x][y]) {
                 count++;
             } else break;
-        }
         return (isWin(count));
     }
 
@@ -220,11 +321,11 @@ public class TicTacToe {
 
     private static void printRules() {
         String[] rulls = {"  Игрок и искусственный интеллект по очереди ставят на свобод-",
-                "ные клетки поля, размер которого задает игрок, фигурки ( игрок",
-                "ходит крестиками, искусственный интеллект - ноликами ).",
+                "ные клетки поля, размер которого задает игрок, фигурки. Игрок ",
+                "выбирает какой фигуркой он будет ходить: крестиком или ноликом.",
+                "Искусственный интеллект ходит той фигурой, которая осталась.",
                 "  Первый, выстроивший в ряд  по вертикали, горизонтали или диа-",
-                "гонали свои фигуры в количестве, равном размерам поля, выигры-",
-                "вает. ",
+                "гонали свои фигуры в количестве, заданном игроком, выигрывает. ",
                 "  Первый ход делает игрок, ставящий крестики."
         };
         System.out.println("-------------------------Правила игры-------------------------\n");
