@@ -25,6 +25,10 @@ public class Worker {
         this.salary = salary;
     }
 
+    public int getAge(){
+        return age;
+    }
+
     public void getInfo(){
         System.out.printf("%s %s %s\n", surname, name, patronymic);
         System.out.printf("Age: %d \n", age);
