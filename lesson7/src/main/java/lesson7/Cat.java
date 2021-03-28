@@ -6,7 +6,7 @@ public class Cat implements Jumpable, Runable{
     private int max_height;
     private boolean isLeftTheRase = false;
 
-    public Cat(String name){
+    public Cat(String name, int max_height, int max_length){
         this.name = name;
         this.max_height = max_height;
         this.max_length = max_length;
@@ -15,13 +15,13 @@ public class Cat implements Jumpable, Runable{
     @Override
     public void jump(int height, Wall wall) {
         if (isAbilityJump(height, wall.height) && !isLeftTheRase) {
-            System.out.printf("Кот, по имени /s, прыгнул на  /d метров вверх", this.name, height);
+            System.out.printf("Кот, по имени %s, прыгнул на  %d метров вверх\n", name, height);
         } else if(isLeftTheRase){
-            System.out.println("Кот, по имени /s, не может участвовать, сошел с дистанции до этого препятствия");
+            System.out.printf("Кот, по имени %s, не может участвовать, сошел с дистанции до этого препятствия\n", name);
         }
         else {
-            System.out.printf("Кот, по имени /s, не смог перепрыгнуть стену, высотой /d метров", this.name, wall.height);
-            System.out.println("Кот, по имени /s, сошел с дисстанции");
+            System.out.printf("Кот, по имени %s, не смог перепрыгнуть стену, высотой %d метров\n", name, wall.height);
+            System.out.printf("Кот, по имени %s, сошел с дисстанции\n", name);
             isLeftTheRase = true;
         }
     }
@@ -29,13 +29,13 @@ public class Cat implements Jumpable, Runable{
     @Override
     public void run(int distance, Treadmill treadmill) {
         if (isAbilityRun(distance, treadmill.length) && !isLeftTheRase){
-            System.out.printf("Кот, по имени /s, пробежал /d метров\n", this.name, distance);
+            System.out.printf("Кот, по имени %s, пробежал %d метров\n", name, distance);
         } else if(isLeftTheRase){
-            System.out.println("Кот, по имени /s, не может участвовать, сошел с дистанции до этого препятствия");
+            System.out.printf("Кот, по имени %s, не может участвовать, сошел с дистанции до этого препятствия\n", name);
         }
         else {
-            System.out.printf("Кот, по имени /s, не смог пробежать заданных /d метров\n", this.name, treadmill.length);
-            System.out.println("Кот, по имени /s, сошел с дисстанции");
+            System.out.printf("Кот, по имени %s, не смог пробежать заданных %d метров\n", name, treadmill.length);
+            System.out.printf("Кот, по имени %s, сошел с дисстанции\n", name);
             isLeftTheRase = true;
         }
     }
