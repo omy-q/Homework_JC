@@ -2,5 +2,5 @@ package lesson7;
 
 public interface Runable {
 
-    void run(float distance);
+    void run(int distance, Treadmill treadmill);
 }
