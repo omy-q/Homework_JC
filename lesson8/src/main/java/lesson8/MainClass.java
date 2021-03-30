@@ -24,14 +24,17 @@ public class MainClass {
                 {"13", "14", "15", "16"}
         };
 
-        String[][] incorrectDataArr = {};
+        String[][] incorrectDataArr = {
+                {"1", "2", "3", "4"},
+                {"5", "6", "7", "8"},
+                {"9", "ten", "11", "12"},
+                {"13", "14", "15", "16"}
+        };
 
         try {
-            getArraySum(incorrectSizeArr2);
-        } catch (MyArraySizeException e){
+            getArraySum(incorrectDataArr);
+        } catch (MyArraySizeException | MyArrayDataException e){
             e.printStackTrace();
-        } catch (MyArrayDataException e){
-            System.out.println(e.getMessage());
         }
 
     }
