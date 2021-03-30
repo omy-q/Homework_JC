@@ -18,11 +18,16 @@ public class MainClass {
                 {"13", "14"}
         };
 
-        String[][] incorrectSizeArr2 = {};
+        String[][] incorrectSizeArr2 = {
+                {"5", "6", "7", "8"},
+                {"9", "10", "11", "12"},
+                {"13", "14", "15", "16"}
+        };
+
         String[][] incorrectDataArr = {};
 
         try {
-            getArraySum(incorrectSizeArr1);
+            getArraySum(incorrectSizeArr2);
         } catch (MyArraySizeException e){
             e.printStackTrace();
         } catch (MyArrayDataException e){
