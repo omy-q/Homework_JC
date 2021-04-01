@@ -7,7 +7,7 @@ public class DataBase {
     private String dbName = "dogs.db";
 
     public DataBase() throws ClassNotFoundException, SQLException{
-        Class.forName("org.sglite.JDBC");
+        Class.forName("org.sqlite.JDBC");
         connection = DriverManager.getConnection("jdbc:sqlite:" + dbName);
         statement = connection.createStatement();
     }
