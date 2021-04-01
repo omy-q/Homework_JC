@@ -23,10 +23,9 @@ public class DataBase {
     }
 
     public void insertAllData(Dog dog) throws SQLException{
-        System.out.println("INSERT INTO dogs (name, age, color, breed) " +
-                "VALUES (" + "'" + dog.getName() +"', " + dog.getAge() + ", " + "'" + dog.getColor() + "', " + "'" +dog.getBreed() + "');");
-        statement.executeUpdate("INSERT INTO dogs (name, age, color, breed) " +
-                "VALUES (" + "'" + dog.getName() +"', " + dog.getAge() + ", " + "'" + dog.getColor() + "', " + "'" +dog.getBreed() + "');");
+                statement.executeUpdate("INSERT INTO dogs (name, age, color, breed) " +
+                "VALUES (" + "'" + dog.getName() +"', " + dog.getAge() + ", " +
+                        "'" + dog.getColor() + "', " + "'" +dog.getBreed() + "');");
     }
 
     public void updateOneData(String colomnName, String colomnValue, String where) throws SQLException{

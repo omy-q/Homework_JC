@@ -45,7 +45,9 @@ public class Dog {
     }
 
     public String getBreed(){
-        return breed;
+        String str_breed = breed;
+        if (str_breed == null) str_breed = "дворняжка";
+        return str_breed;
     }
 
 }

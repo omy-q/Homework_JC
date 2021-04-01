@@ -21,15 +21,27 @@ public class MainClass {
         try {
             db.connect();
             db.createTable();
-            for (Dog dog:dogs) {
-                db.insertAllData(dog);
-            }
+//            for (Dog dog:dogs) {
+//                db.insertAllData(dog);
+//            }
+            db.readDB();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             db.disconnect();
         }
 
-        //try{}catch(SQLException e){e.printStackTrace();}
+
+        try{
+            db.connect();
+            db.updateOneData("name", "'Шарик'", "name='Тузик'");
+            db.updateTwoData("name", "'Мисси'", "age", "6", "id=3");
+            db.readColumn("name", "age>4");
+        }catch(SQLException | ClassNotFoundException e){
+            e.printStackTrace();
+        }finally {
+            db.disconnect();
+        }
+
     }
 }
