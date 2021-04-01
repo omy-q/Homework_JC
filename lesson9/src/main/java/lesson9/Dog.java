@@ -25,10 +25,10 @@ public class Dog {
     public void getInfo(){
         String str_breed = breed;
         if (str_breed == null) str_breed = "дворняжка";
-        System.out.printf("Информация по данной собаке:\n имя: %s;\n " +
+        System.out.printf("Информация по данной собаке:\nимя: %s;\n" +
                                                          "возраст: %d;\n" +
                                                          "цвет: %s;\n" +
-                                                         "порода: %s\n",
+                                                         "порода: %s\n\n",
                          name, age, color, str_breed);
     }
 
