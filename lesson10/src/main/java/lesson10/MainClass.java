@@ -1,7 +1,9 @@
 package lesson10;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public class MainClass {
 
@@ -14,6 +16,10 @@ public class MainClass {
             list.add("word" + (i + 1));
         }
         System.out.println(list);
+
+        Set<String> set = new LinkedHashSet<>();
+        set.addAll(list);
+        System.out.println(set);
 
     }
 }
