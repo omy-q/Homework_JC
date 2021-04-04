@@ -1,9 +1,6 @@
 package lesson10;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class MainClass {
 
@@ -21,5 +18,18 @@ public class MainClass {
         set.addAll(list);
         System.out.println(set);
 
+        System.out.println(getQuantity(list));
+    }
+
+    public static LinkedHashMap getQuantity(List<String> words){
+        LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
+        Iterator<String> iter = words.iterator();
+        while (iter.hasNext()){
+            String key = iter.next();
+            if (map.containsKey(key)){
+                map.put(key, map.get(key) + 1);
+            } else map.put(key, 1);
+        }
+        return map;
     }
 }
