@@ -16,6 +16,11 @@ public class MainClass {
 
         typeConversion(arr2);
 
+        Fruit apple = new Apple(0.8f);
+        Fruit orange = new Orange(1.1f);
+        System.out.println("apple weight: " + apple.getWeight());
+        System.out.println("orange weight: " + orange.getWeight());
+
     }
 
     private static <E> E[] swapEl(E[] array, int index1, int index2){
