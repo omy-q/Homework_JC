@@ -1,5 +1,7 @@
 package lesson11;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainClass {
@@ -11,6 +13,8 @@ public class MainClass {
         printArr(swapEl(arr1, 1, 0));
         printArr(arr2);
         printArr(swapEl(arr2, 1, 2));
+
+        typeConversion(arr2);
 
     }
 
@@ -27,6 +31,11 @@ public class MainClass {
             System.out.print(el + " ");
         }
         System.out.print("]\n");
+    }
+
+    private static <E> void typeConversion(E[] array){
+        ArrayList<E> arrayList = new ArrayList<>(Arrays.asList(array));
+        System.out.println("Convert Array to ArrayList:" + arrayList.getClass().getName());
     }
 
 }
