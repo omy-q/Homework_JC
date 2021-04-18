@@ -1,6 +1,7 @@
 package lesson13;
 
 import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.Semaphore;
 
 public class Car implements Runnable {
 
@@ -8,6 +9,8 @@ public class Car implements Runnable {
     private Race race;
     private int speed;
     private String name;
+
+    private static Semaphore smp = new Semaphore(1);
 
     public String getName() {
         return name;
@@ -35,6 +38,9 @@ public class Car implements Runnable {
 
         for (int i = 0; i < race.getStages().size(); i++) {
             race.getStages().get(i).go(this);
+        }
+        if (smp.tryAcquire()){
+             System.out.printf("%s победил гонку!!!!!!!!!\n", getName());
         }
     }
 }
