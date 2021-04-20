@@ -19,4 +19,19 @@ public class MainClass {
         }
         return newArr;
     }
+
+    public boolean checkArrOneAndFour(int[] arr){
+        boolean isOne = false;
+        boolean isFour = false;
+        for (int elem : arr) {
+            if (elem == 1){
+                isOne = true;
+            }
+            if (elem == 4) {
+                isFour = true;
+            }
+        }
+        return (isOne && isFour);
+    }
 }
+
