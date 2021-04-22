@@ -7,15 +7,16 @@ public class MainClass {
     public int[] arrayAfterFour(int[] arr) throws RuntimeException{
         int[] newArr;
         int startIndex = - 1;
-        for (int i = arr.length; i >= 0; i--){
+        for (int i = 0; i < arr.length; i++){
             if (arr[i] == 4){
                 startIndex = i + 1;
             }
         }
-        if (startIndex == - 1){
+        if (startIndex == - 1 || startIndex == arr.length){
             throw new RuntimeException();
         } else{
-            newArr = Arrays.copyOfRange(arr, startIndex, arr.length - 1);
+            newArr = Arrays.copyOfRange(arr, startIndex, arr.length);
+//            System.out.println(Arrays.toString(newArr));
         }
         return newArr;
     }
